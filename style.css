@@ -355,6 +355,7 @@ ul {
     overflow: hidden; /* Oculta cualquier contenido que se desborde, como el texto en su estado inicial si es más grande */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
     cursor: pointer; /* Indica que es interactuable */
     display: flex; /* Para centrar contenido si no hay overlay */
     align-items: center; /* Centrar verticalmente el contenido si es flex */
@@ -418,6 +419,64 @@ ul {
     /* text-overflow: ellipsis; */
 }
 
+.service-card.selected-state img {
+    transform: scale(1.1);
+}
+.service-card.selected-state::before {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.service-card.selected-state h3 {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Opcional: Para darle un borde o sombra a la tarjeta cuando esté seleccionada (visualización extra) */
+.service-card.selected-state {
+    /* Por ejemplo, un borde más pronunciado o un box-shadow diferente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+    /* Puedes añadir un borde para resaltarlo aún más, pero ten cuidado con el `overflow: hidden`
+       si el borde está en la tarjeta y la imagen se agranda. Podría ser mejor un `outline`. */
+    /* outline: 2px solid var(--primary-color); */ 
+}
+
+
+.service-explanation {
+    margin-top: 40px;
+    padding: 0 30px; 
+    background-color: var(--light-bg); 
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    color: var(--text-color);
+    
+    max-height: 0; 
+    overflow: hidden; 
+    opacity: 0; 
+    
+    /* Ajusta las transiciones. La de opacidad es clave aquí. */
+    transition: max-height 0.7s ease-out, /* Para el barrido */
+                opacity 0.5s ease-in-out, /* Para el fade de la CAJA */
+                padding 0.7s ease-out; 
+}
+
+.service-explanation.active {
+    max-height: 500px; 
+    opacity: 1;
+    padding: 30px; 
+}
+
+/* Opcional: Estilo para el párrafo interno */
+.service-explanation p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    /* Añade transición de opacidad para el propio párrafo */
+    transition: opacity 0.3s ease-in-out; /* Más rápido para el fade del texto */
+    opacity: 1; /* Por defecto visible */
+}
+
+/* Clase para ocultar temporalmente el párrafo y luego mostrarlo */
+.service-explanation p.fading-out {
+    opacity: 0;
+}
 
 /* --- Media Queries para responsividad (ajusta según tus necesidades) --- */
 @media (max-width: 768px) {
