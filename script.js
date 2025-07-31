@@ -18,12 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// En tu archivo script.js
-
-// En tu archivo script.js
-
-// En tu archivo script.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const serviceCards = document.querySelectorAll('.service-card');
     const explanationDiv = document.getElementById('service-explanation');
@@ -48,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    let activeCardId = null; // ID de la tarjeta actualmente seleccionada
+    let activeCardId = null; 
 
     serviceCards.forEach(card => {
         card.addEventListener('click', () => {
@@ -60,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeCardId) {
                 const prevActiveCard = document.getElementById(activeCardId);
                 if (prevActiveCard) {
-                    prevActiveCard.classList.remove('selected-state'); // <-- QUITAR CLASE
+                    prevActiveCard.classList.remove('selected-state');
                 }
             }
 
@@ -68,18 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isSameCardClicked && isCurrentlyActiveExplanation) {
                 // Caso: Clic en la misma tarjeta activa -> OCULTAR explicación y deseleccionar card
-                explanationDiv.classList.remove('active');
+                
+                // 1. Inicia el fade-out del texto
                 explanationText.classList.add('fading-out'); 
+                explanationDiv.classList.remove('active'); // Esto inicia el barrido y fade-out de la caja
+                
+                // 2. Después de que el texto se haya desvanecido, oculta el contenedor.
+                //    El contenedor ahora bajará su max-height y su propia opacidad (si la tiene).
                 setTimeout(() => {
-                    explanationText.textContent = ''; 
-                    explanationText.classList.remove('fading-out'); 
-                }, 300); 
-                activeCardId = null; // No hay tarjeta activa
-                // La clase 'selected-state' ya se quitó al principio de este bloque si era la misma tarjeta
+                    explanationText.textContent = ''; // Limpia el texto
+                    explanationText.classList.remove('fading-out'); // Elimina la clase de fade-out
+                }, 1000); // **Este tiempo debe ser IGUAL o LIGERAMENTE MAYOR que la transición de opacidad del texto**
+                         // Si la transición de .service-explanation p es 0.3s, este setTimeout es 300ms.
+                
+                activeCardId = null; 
+
             } else {
                 // Caso: Clic en una tarjeta diferente O la primera vez que se activa
-                activeCardId = cardId; // Establece la nueva tarjeta activa
-                document.getElementById(activeCardId).classList.add('selected-state'); // <-- AÑADIR CLASE a la nueva tarjeta
+                activeCardId = cardId; 
+                document.getElementById(activeCardId).classList.add('selected-state'); 
 
                 const details = serviceDetails[cardId];
                 const newTextContent = details ? `<strong>${details.title}</strong><br>${details.text}` : 'Información no disponible para este servicio.';
@@ -87,11 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isCurrentlyActiveExplanation) {
                     // Ya hay una explicación visible y se selecciona OTRA tarjeta -> CAMBIAR CONTENIDO (fade-out, cambiar, fade-in)
                     explanationText.classList.add('fading-out'); 
+                    
                     setTimeout(() => {
                         explanationText.innerHTML = newTextContent; 
                         explanationText.classList.remove('fading-out'); 
+                        // Aseguramos que la caja está activa para que el nuevo texto sea visible
+                        explanationDiv.classList.add('active'); 
                     }, 300); 
-                    explanationDiv.classList.add('active'); // Asegura que el div contenedor ya tiene la clase 'active'
                     
                 } else {
                     // No hay explicación visible -> BARRIDO (slide-down y fade-in)
@@ -109,13 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeCardId) { 
                 const prevActiveCard = document.getElementById(activeCardId);
                 if (prevActiveCard) {
-                    prevActiveCard.classList.remove('selected-state'); // <-- QUITAR CLASE AL DESELECCIONAR TODO
+                    prevActiveCard.classList.remove('selected-state');
                 }
-                explanationDiv.classList.remove('active');
-                explanationText.classList.add('fading-out'); 
+                
+                // Inicia el fade-out del texto
+                // explanationText.classList.add('fading-out'); 
+                
+                // Después de que el texto se haya desvanecido, oculta el contenedor
                 setTimeout(() => {
+                    explanationDiv.classList.remove('active'); 
                     explanationText.textContent = '';
-                    explanationText.classList.remove('fading-out');
+                    // explanationText.classList.remove('fading-out');
                 }, 300); 
                 activeCardId = null;
             }

@@ -448,32 +448,32 @@ ul {
     text-align: left;
     color: var(--text-color);
     
-    max-height: 0; 
-    overflow: hidden; 
-    opacity: 0; 
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden; /* Oculta contenido desbordado */
+    opacity: 0; /* Oculto visualmente por defecto al cerrar */
     
-    /* Ajusta las transiciones. La de opacidad es clave aquí. */
-    transition: max-height 0.7s ease-out, /* Para el barrido */
-                opacity 0.5s ease-in-out, /* Para el fade de la CAJA */
-                padding 0.7s ease-out; 
+    /* Transiciones para cuando se ACTIVA (.active) y desactiva */
+    transition: max-height 0.7s ease-out, /* El barrido principal */
+                padding 0.7s ease-out, /* El padding se expande */
+                opacity 0.5s ease-in-out; /* La caja se difumina */
 }
 
 .service-explanation.active {
-    max-height: 500px; 
-    opacity: 1;
-    padding: 30px; 
+    max-height: 500px; /* Suficiente para el contenido */
+    height: 150px;
+    opacity: 1; /* Visible */
+    padding: 30px; /* Padding cuando está abierto */
 }
 
-/* Opcional: Estilo para el párrafo interno */
+/* Estilos para el párrafo interno */
 .service-explanation p {
     font-size: 1.1em;
     line-height: 1.8;
-    /* Añade transición de opacidad para el propio párrafo */
-    transition: opacity 0.3s ease-in-out; /* Más rápido para el fade del texto */
-    opacity: 1; /* Por defecto visible */
+    opacity: 1; /* Visible por defecto dentro de la caja */
+    transition: opacity 0.4s ease-in-out; /* Transición para el fade-out del texto */
 }
 
-/* Clase para ocultar temporalmente el párrafo y luego mostrarlo */
+/* Clase para ocultar temporalmente el párrafo */
 .service-explanation p.fading-out {
     opacity: 0;
 }
