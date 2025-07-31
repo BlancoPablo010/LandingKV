@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Variables CSS (opcional, pero útil para mantener consistencia) */
+:root {
+    --primary-color: #438343; /* Un azul vibrante, similar al del video */
+    --secondary-color: #6c757d; /* Gris para textos secundarios */
+    --text-color: #333; /* Color de texto principal */
+    --light-bg-primary: #d5f0c4;/* Fondo claro para algunas secciones */
+    --dark-bg: #343a40; /* Fondo oscuro para el footer */
+    --font-family: 'Montserrat', sans-serif; /* Fuente genérica, cámbiala si usas Google Fonts */
+}
+
+/* Reset y Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff; /* Fondo blanco general */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header - Hero Section (Sección principal con el futbolista de fondo) */
+.hero-section {
+    position: relative;
+    height: 700px; /* Altura de la sección hero, ajústala si es necesario */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el navbar arriba y el contenido al centro/abajo */
+    color: #fff;
+    text-align: center;
+    overflow: hidden; /* Importante para contener la imagen de fondo */
+
+    /* IMAGEN DEL FUTBOLISTA DE FONDO */
+    /* Asegúrate de que 'images/futbolista-hero.jpg' sea la ruta correcta a tu imagen */
+    background: url('assets/images/futbolista.jpeg') no-repeat center center/cover;
+    background-attachment: scroll; /* Cambia a 'fixed' para un efecto parallax */
+}
+
+/* Oscurecer la imagen de fondo para que el texto resalte */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Capa oscura (50% de opacidad negra) */
+    z-index: 0; /* Asegura que esté justo detrás del contenido */
+}
+
+.navbar-wrapper {
+    padding-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    /* PROPIEDADES CLAVE PARA LA ANIMACIÓN */
+    position: fixed; /* ¡El wrapper debe ser fijo para moverse con el scroll! */
+    top: 0; /* Empieza desde la parte superior de la ventana */
+    left: 0;
+    z-index: 1000; /* Asegúrate de que esté por encima de todo */
+    transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animación suave para top y opacidad */
+    /* También podrías usar transform: translateY() en el wrapper si lo prefieres,
+       pero top es más directo aquí con padding-top. */
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente para la barra de navegación */
+    position: relative; /* Para que esté por encima de ::before */
+    z-index: 1; /* Asegura que la navbar esté por encima de la capa oscura del fondo */
+    height: 60px;
+    width: 80%; /* Ocupa todo el ancho */
+    border-radius: 20px;
+}
+
+/* Clase para ocultar la navbar (aplicada al wrapper) */
+.navbar-wrapper.hidden {
+    top: -150px; /* Mueve el wrapper completamente fuera de la vista hacia arriba.
+                    Ajusta este valor (-150px) para que la navbar se oculte por completo,
+                    considerando su altura (80px) y el padding-top (40px). Un valor mayor
+                    asegura que no se vea nada. */
+    opacity: 0; /* La hace completamente transparente */
+    pointer-events: none; /* Deshabilita los eventos de clic cuando está oculta */
+}
+
+.navbar .logo{
+    height: 40px; /* Ajustar tamaño del logo */
+
+}
+
+.navbar .logo img {
+    width: 40px;
+    border-radius: 5px;
+}
+
+
+.navbar .nav-links{
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar .contact-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-width: 2px;
+    border-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .contact-button:hover {
+    background-color: white; /* Un tono más oscuro de azul */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    margin-left:50px;
+    position: relative; /* Para que esté por encima de ::before */
+    z-index: 1; /* Asegura que el contenido hero esté por encima de la capa oscura */
+    width:50%;
+    flex-grow: 1; /* Permite que el contenido tome el espacio restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-bottom: 80px; /* Espacio para que no choque con el borde inferior */
+}
+
+.hero-content h1 {
+    text-align: left;
+    line-height: 1;
+    font-size: 5em;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+    font-size: 2em; /* Para el "0" o cualquier número de impacto */
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* About Section (Quiénes somos?) */
+.about-section {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
+.about-section h2 {
+    width: 80%;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.about-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: center;
+    background-color: #fff;
+    text-align: center;
+}
+
+
+.about-text {
+    width: 35%;
+
+}
+
+.about-text h2{
+    text-align: left;
+    width: 100%;
+}
+
+.about-text p{
+    text-align: justify;
+}
+
+.about-image {
+    width: 30%;
+    flex-shrink: 0; 
+    
+}
+
+.about-kiko {
+    width: 35%;
+
+}
+
+.about-image img{
+    object-fit: cover;
+
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.about-kiko h3 {
+    text-align: justify;
+    color: var(--text-color);
+}
+
+.about-kiko p {
+    text-align: justify;
+}
+
+/* Method Section (Nuestro Método KV) */
+.method-section {
+    padding: 60px 0;
+    background-color: var(--light-bg-primary);
+    text-align: center;
+}
+
+.method-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.method-section .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+}
+
+.method-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.method-cards .card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 280px;
+    transition: transform 0.3s ease;
+}
+
+.method-cards .card:hover {
+    transform: translateY(-5px);
+}
+
+.method-cards .card i {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.method-cards .card h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+/* Services Section (Nuestros Servicios Especializados) */
+.services-section {
+    padding: 60px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.services-section .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+}
+
+.service-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.service-cards .service-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 280px;
+    max-width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.service-cards .service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-cards .service-card img {
+    width: 100%;
+    height: 180px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+.service-cards .service-card h3 {
+    font-size: 1.2em;
+    padding: 15px;
+    color: var(--text-color);
+}
+
+.view-all-services-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Para aplicar padding y margin */
+}
+
+.view-all-services-button:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+.view-all-services-button i {
+    margin-left: 10px;
+}
+
+/* Testimonial Section (Testimonio de Nuria Sánchez) */
+.testimonial-section {
+    padding: 60px 0;
+    background-color: var(--light-bg);
+    text-align: center;
+}
+
+.testimonial-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.testimonial-image {
+    flex-shrink: 0;
+}
+
+.testimonial-image img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-text {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    text-align: left;
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.testimonial-text .author {
+    font-weight: bold;
+    margin-top: 15px;
+    font-style: normal;
+}
+
+.testimonial-text .role {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    font-style: normal;
+}
+
+/* Contact Section (Conecta con nosotros) */
+.contact-section {
+    padding: 60px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar los iconos y texto */
+    gap: 10px;
+}
+
+.contact-info p i {
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+footer .footer-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .footer-links ul li a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer .footer-links ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Media Queries para Responsividad (Ejemplos, ajusta según necesidad) */
+@media (max-width: 992px) {
+    .navbar .nav-links {
+        display: none; /* O implementar un menú hamburguesa/toggle para móviles */
+    }
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-text, .about-kiko {
+        max-width: 80%;
+    }
+    .testimonial-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+    .method-cards, .service-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .method-cards .card, .service-cards .service-card {
+        max-width: 90%;
+    }
+    footer .container {
+        text-align: center;
+    }
+    footer .footer-links ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 500px;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .navbar .contact-button {
+        padding: 8px 15px;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .contact-info p {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
