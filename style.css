@@ -320,6 +320,8 @@ ul {
     padding: 60px 0;
     background-color: #fff;
     text-align: center;
+    width: 100%;
+    display: flex;
 }
 
 .services-section h2 {
@@ -333,41 +335,107 @@ ul {
     color: var(--secondary-color);
 }
 
+/* style.css */
+
+/* ... (Tu CSS existente para .services-section, .container, h2, .subtitle) ... */
+
 .service-cards {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.service-cards .service-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 280px;
-    max-width: 300px;
-    text-align: left;
-    transition: transform 0.3s ease;
-}
-
-.service-cards .service-card:hover {
-    transform: translateY(-5px);
-}
-
-.service-cards .service-card img {
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin-top: 40px;
     width: 100%;
-    height: 180px; /* Altura fija para las imágenes */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
 }
 
-.service-cards .service-card h3 {
-    font-size: 1.2em;
-    padding: 15px;
-    color: var(--text-color);
+.service-card {
+    position: relative; /* ¡Importante para posicionar el texto encima de forma absoluta! */
+    width: 280px; /* Ancho fijo para cada tarjeta (ajusta si lo necesitas) */
+    height: 175px; /* Altura fija para cada tarjeta (ajusta si lo necesitas) */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde, como el texto en su estado inicial si es más grande */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* Indica que es interactuable */
+    display: flex; /* Para centrar contenido si no hay overlay */
+    align-items: center; /* Centrar verticalmente el contenido si es flex */
+    justify-content: center; /* Centrar horizontalmente el contenido si es flex */
+    text-align: center; /* Centra el texto si no está posicionado absolutamente */
+}
+
+.service-card img {
+    width: 100%;
+    height: 100%; /* La imagen ocupará toda la tarjeta */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse, recortando si es necesario */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    transition: transform 0.3s ease-in-out; /* Transición para el zoom en hover */
+}
+
+/* Capa de superposición para el efecto oscuro */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Color oscuro inicial (semitransparente) */
+    transition: background-color 0.3s ease-in-out; /* Transición para el color del fondo */
+    z-index: 1; /* Asegura que esté por encima de la imagen pero debajo del texto */
+}
+
+.service-card h3 {
+    position: absolute; /* Posiciona el título sobre la imagen */
+    color: #fff; /* Color del texto blanco */
+    font-size: 1.1em; /* Tamaño de fuente inicial */
+    padding: 10px;
+    margin: 0; /* Elimina márgenes por defecto del h3 */
+    width: 80%; /* El texto ocupa el ancho de la tarjeta */
+    z-index: 2; /* Asegura que esté por encima de la imagen y el overlay */
+    /* Para centrar el texto vertical y horizontalmente */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el elemento en sí mismo */
+    
+    /* Animación del texto */
+    transition: font-size 0.3s ease-in-out, transform 0.3s ease-in-out;
+ 
+}
+
+/* Efectos al pasar el ratón (hover) */
+.service-card:hover img {
+    transform: scale(1.1); /* Ligeramente más grande para un efecto de zoom */
+}
+
+.service-card:hover::before {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro al hacer hover */
+}
+
+.service-card:hover h3 {
+    /* Aquí usamos 'transform: scale()' para agrandar el texto */
+    transform: translate(-50%, -50%) scale(1.2); /* Aumenta el texto un 20% */
+    /* Si el texto se vuelve demasiado grande y quieres que se corte con puntos suspensivos: */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+}
+
+
+/* --- Media Queries para responsividad (ajusta según tus necesidades) --- */
+@media (max-width: 768px) {
+    .service-card {
+        width: 90%; /* Las tarjetas ocupan casi todo el ancho en móviles */
+        height: 200px; /* Ajusta la altura si es necesario para móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        height: 180px;
+    }
+    .service-card h3 {
+        font-size: 1.1em;
+    }
+    .service-card:hover h3 {
+        font-size: 1.3em;
+    }
 }
 
 .view-all-services-button {
