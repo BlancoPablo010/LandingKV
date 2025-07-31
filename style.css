@@ -481,6 +481,133 @@ ul {
     color: var(--primary-color);
 }
 
+/* Nuevo contenedor para info de contacto y formulario */
+.contact-content-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Permite que se apilen en pantallas pequeñas */
+    justify-content: center; /* Centra los elementos */
+    gap: 50px; /* Espacio entre la información y el formulario */
+    max-width: 1000px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el wrapper */
+}
+
+.contact-info,
+.contact-form-wrapper {
+    flex: 1; /* Permite que ambos tomen espacio equitativamente */
+    min-width: 300px; /* Ancho mínimo antes de apilarse */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alineación del texto dentro de cada caja */
+}
+
+.contact-info h3,
+.contact-form-wrapper h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center; /* Centrar los títulos de las cajas */
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    display: flex; /* Para alinear ícono y texto */
+    align-items: center;
+    color: var(--text-color);
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2em;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: darken(var(--primary-color), 10%);
+    /* O un color directo: color: #0056b3; */
+}
+
+/* Estilos del Formulario */
+.contact-form-wrapper form {
+    display: flex;
+    flex-direction: column; /* Apila los campos verticalmente */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* La etiqueta ocupa toda la línea */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: var(--font-family); /* Usa tu fuente personalizada */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar solo verticalmente */
+}
+
+.submit-button {
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Alinea el botón a la izquierda si no quieres que ocupe todo el ancho */
+    /* O si quieres que ocupe todo el ancho: width: 100%; */
+}
+
+.submit-button:hover {
+    background-color: darken(var(--primary-color), 10%);
+    /* O un color directo: background-color: #0056b3; */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .contact-content-wrapper {
+        flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+        gap: 30px;
+    }
+    .contact-info,
+    .contact-form-wrapper {
+        min-width: unset; /* Reinicia el min-width */
+        width: 90%; /* Ocupa más ancho en móviles */
+        margin: 0 auto;
+    }
+}
+
 /* Footer */
 footer {
     background-color: var(--dark-bg);
