@@ -6,6 +6,7 @@
     --secondary-color: #6c757d; /* Gris para textos secundarios */
     --text-color: #333; /* Color de texto principal */
     --light-bg-primary: #d5f0c4;/* Fondo claro para algunas secciones */
+    --dark-bg-primary: #112012; /* Fondo claro para el footer */
     --dark-bg: #343a40; /* Fondo oscuro para el footer */
     --font-family: 'Montserrat', sans-serif; /* Fuente genérica, cámbiala si usas Google Fonts */
 }
@@ -394,28 +395,66 @@ ul {
 
 /* Testimonial Section (Testimonio de Nuria Sánchez) */
 .testimonial-section {
+    width: 100%;
     padding: 60px 0;
-    background-color: var(--light-bg);
-    text-align: center;
+    background-color: var(--light-bg); /* Fondo blanco de la sección completa */
+    text-align: center; /* Centra el contenido principal de la sección */
 }
 
 .testimonial-content {
+    position: relative; /* ¡Importante! Para posicionar la imagen absolutamente dentro */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centra el contenedor en la página */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    justify-content: flex-start; /* Distribuye el espacio entre la imagen y el texto */
+    align-items: center; /* Centra los ítems flex verticalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    background-color: var(--dark-bg-primary); /* Este es el fondo verde oscuro */
+    padding: 20px 0; /* Un padding vertical para el contenido dentro del fondo verde */
+
+    /* Altura MÍNIMA del fondo verde. La imagen la hará crecer si es más alta */
+    min-height: 350px; /* Define la altura base del fondo verde. Ajusta este valor. */
+    
+    /* El overflow hidden debe estar en el contenedor padre de la imagen que queremos recortar,
+       si la imagen está dentro y queremos que su padre la "corte".
+       Pero como queremos que la imagen sobresalga del *fondo* verde, y la imagen
+       es un hermano del texto, el overflow lo gestionaremos en la propia imagen
+       o en un contenedor si la hacemos un pseudo elemento.
+       Para este efecto, la imagen no estará 'overflow: hidden' por su padre `.testimonial-content`. */
+}
+
+.testimonial-spacer{
+    width: 200px;
 }
 
 .testimonial-image {
     flex-shrink: 0;
+    /* La imagen en sí misma es el elemento que va a sobresalir. */
+    /* La altura de la imagen dictará cuánto sobresale. */
+    /* Quitamos el 'position: absolute' de aquí si queremos que .testimonial-content controle la altura.
+       Si lo dejamos, entonces .testimonial-content no 'contendrá' la altura de la imagen. */
+    
+    /* Si la imagen va a ser el elemento que determine la altura */
+    /* Para que la imagen sobresalga del fondo verde y se centre,
+       no podemos usar 'align-items: center' en .testimonial-content para la imagen,
+       o debemos ajustar su margen. */
+
+    /* Alternativa para sobresalir: usar un margen negativo */
+    margin-top: -80px; /* Mueve la imagen 80px hacia arriba, sobresaliendo */
+    margin-bottom: -80px; /* Mueve la imagen 80px hacia abajo, sobresaliendo */
+    /* Estos márgenes negativos son la clave para que la imagen "salga" del flujo del contenedor flex
+       sin usar 'position: absolute' si queremos que el texto aún la respete.
+       Ajusta el valor (-80px) según cuánto quieres que sobresalga. */
+
+    z-index: 1; /* Asegura que la imagen esté por encima del fondo verde */
 }
 
 .testimonial-image img {
-    max-width: 400px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Mantén el ancho máximo */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    border-radius: 8px; /* Bordes redondeados de la imagen */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada para el efecto de "levantamiento" */
 }
 
 .testimonial-text {
@@ -425,7 +464,9 @@ ul {
     text-align: left;
     font-size: 1.2em;
     font-style: italic;
-    color: var(--text-color);
+    color: #fff; /* Texto blanco para el fondo oscuro */
+    padding: 20px; /* Añade padding para separar el texto de los bordes del contenedor */
+    z-index: 2; /* Asegura que el texto esté por encima de la imagen si hay superposición */
 }
 
 .testimonial-text .author {
@@ -436,7 +477,7 @@ ul {
 
 .testimonial-text .role {
     font-size: 0.9em;
-    color: var(--secondary-color);
+    color: rgba(255, 255, 255, 0.7); /* Gris claro para el rol */
     font-style: normal;
 }
 
