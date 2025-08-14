@@ -66,7 +66,7 @@ ul {
 
     /* IMAGEN DEL FUTBOLISTA DE FONDO */
     /* Asegúrate de que 'images/futbolista-hero.jpg' sea la ruta correcta a tu imagen */
-    background: url('assets/images/futbolista.jpeg') no-repeat center center/cover;
+    background: url('assets/images/futbolista.jpg') no-repeat center center/cover;
     background-attachment: scroll; /* Cambia a 'fixed' para un efecto parallax */
 }
 
@@ -248,8 +248,8 @@ ul {
 .about-image img{
     object-fit: cover;
 
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 20px;
     text-align: center;
 }
@@ -267,19 +267,20 @@ ul {
 /* Method Section (Nuestro Método KV) */
 .method-section {
     padding: 60px 0;
-    background-color: var(--light-bg-primary);
+    background-color: #3c7723;
     text-align: center;
 }
 
 .method-section h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    color: black;
 }
 
 .method-section .subtitle {
     font-size: 1.1em;
     margin-bottom: 40px;
-    color: var(--secondary-color);
+    color: white;
 }
 
 .method-cards {
@@ -307,7 +308,7 @@ ul {
 
 .method-cards .card i {
     font-size: 3em;
-    color: var(--primary-color);
+    color:#1b4707;
     margin-bottom: 15px;
 }
 
