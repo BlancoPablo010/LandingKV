@@ -25,6 +25,10 @@ body {
     background-color: #fff; /* Fondo blanco general */
 }
 
+section {
+    height: 600px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -56,17 +60,16 @@ ul {
 /* Header - Hero Section (Sección principal con el futbolista de fondo) */
 .hero-section {
     position: relative;
-    height: 700px; /* Altura de la sección hero, ajústala si es necesario */
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Empuja el navbar arriba y el contenido al centro/abajo */
-    color: #fff;
+    color: black;
     text-align: center;
     overflow: hidden; /* Importante para contener la imagen de fondo */
 
     /* IMAGEN DEL FUTBOLISTA DE FONDO */
     /* Asegúrate de que 'images/futbolista-hero.jpg' sea la ruta correcta a tu imagen */
-    background: url('assets/images/futbolista.jpg') no-repeat center center/cover;
     background-attachment: scroll; /* Cambia a 'fixed' para un efecto parallax */
 }
 
@@ -78,16 +81,15 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Capa oscura (50% de opacidad negra) */
     z-index: 0; /* Asegura que esté justo detrás del contenido */
 }
 
 .navbar-wrapper {
-    padding-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-color: white;
 
     /* PROPIEDADES CLAVE PARA LA ANIMACIÓN */
     position: fixed; /* ¡El wrapper debe ser fijo para moverse con el scroll! */
@@ -106,12 +108,11 @@ ul {
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente para la barra de navegación */
     position: relative; /* Para que esté por encima de ::before */
     z-index: 1; /* Asegura que la navbar esté por encima de la capa oscura del fondo */
     height: 60px;
-    width: 80%; /* Ocupa todo el ancho */
-    border-radius: 20px;
+    width: 100%;
+
 }
 
 /* Clase para ocultar la navbar (aplicada al wrapper) */
@@ -136,7 +137,7 @@ ul {
 
 
 .navbar .nav-links{
-    color: #fff;
+    color: #000;
     font-weight: bold;
     text-transform: uppercase;
     transition: color 0.3s ease;
@@ -147,124 +148,192 @@ ul {
     text-decoration: none;
 }
 
-.navbar .contact-button {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border-width: 2px;
-    border-color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.navbar .contact-button:hover {
-    background-color: white; /* Un tono más oscuro de azul */
-    color: rgba(0, 0, 0, 0.5);
-}
-
-.hero-content {
-    margin-left:50px;
-    position: relative; /* Para que esté por encima de ::before */
-    z-index: 1; /* Asegura que el contenido hero esté por encima de la capa oscura */
-    width:50%;
-    flex-grow: 1; /* Permite que el contenido tome el espacio restante */
+.navbar .links-wrapper {
     display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* About Section (destacada/problema) */
+.seccion-destacada {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 60px;
+  background-color: #f9fafc;
+  gap: 40px;
+  height: 700px;
+}
+
+.contenido {
+  flex: 1;
+  max-width: 600px;
+}
+
+.contenido h2 {
+  font-size: 2.8em;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.contenido p {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: justify;
+  width: 90%;
+}
+
+.boton {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: green;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #005fa3;
+}
+
+.imagen {
+  flex: 1;
+  text-align: center;
+}
+
+.imagen img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seccion-destacada {
     flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    padding-bottom: 80px; /* Espacio para que no choque con el borde inferior */
+    text-align: center;
+  }
+
+  .contenido, .imagen {
+    max-width: 100%;
+  }
 }
 
-.hero-content h1 {
-    text-align: left;
-    line-height: 1;
-    font-size: 5em;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+/* sección experiencia*/
+.experiencia {
+  background-color: #A6A6A0; /* gris ligeramente más claro */
+  text-align: center;
+  height: 150px;
 }
 
-.hero-content p {
-    font-size: 2em; /* Para el "0" o cualquier número de impacto */
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+.stats-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  height: 100%;
+}
+
+.stat-box {
+  flex: 1;
+  min-width: 250px;
+}
+
+.stat-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000; /* texto en negro */
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  font-size: 18px;
+  color: #ffffff; /* texto en blanco */
+  letter-spacing: 0.5px;
 }
 
 /* About Section (Quiénes somos?) */
-.about-section {
-    margin-top: 50px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
+.quienes-somos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px;
+  align-items: center;
 }
 
-.about-section h2 {
-    width: 80%;
-    font-size: 2.5em;
-    margin-bottom: 40px;
+.box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 250px;
+  height: 400px;
 }
 
-.about-wrapper {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: top;
-    justify-content: center;
-    background-color: #fff;
-    text-align: center;
-}
-
-
-.about-text {
-    width: 35%;
+.box1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  margin-left: 50px;
+  flex: 2;
 
 }
 
-.about-text h2{
-    text-align: left;
-    width: 100%;
+.box1 p {
+
+font-size: 1.2em ;
+width:80%;
+text-align: justify;
 }
 
-.about-text p{
-    text-align: justify;
+.box1 h3{ 
+ text-align: center;
+ font-size: 1.3em;
 }
 
-.about-image {
-    width: 30%;
-    flex-shrink: 0; 
-    
+.box2, .box3 {
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+  
+.box3 {
+    margin-right: 50px;
 }
 
-.about-kiko {
-    width: 35%;
-
+.box2 img, .box3 img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
 }
 
-.about-image img{
-    object-fit: cover;
+.box h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color:green; 
+  text-align: center;
+}
 
-    width: 250px;
-    height: 250px;
-    border-radius: 20px;
-    text-align: center;
+.box h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 
-.about-kiko h3 {
-    text-align: justify;
-    color: var(--text-color);
-}
 
-.about-kiko p {
-    text-align: justify;
-}
 
 /* Method Section (Nuestro Método KV) */
+
+
 .method-section {
     padding: 60px 0;
     background-color: #3c7723;
@@ -317,6 +386,116 @@ ul {
     color: var(--text-color);
 }
 
+.metodo-kv {
+  background: #fff; /* Fondo blanco */
+}
+
+.contenedor-descripcion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+    gap: 50px;
+    width: 100%;
+}
+
+.descripcion-titulo {
+    margin-right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 50px;
+    justify-content: left;
+
+}
+
+.descripcion-titulo h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.parte-verde {
+  color: green;
+}
+
+.parte-negra {
+  color: black;
+}
+
+.descripcion-titulo-texto {
+    text-align: justify;
+    margin-bottom: 100px;
+}
+
+.descripcion-imagenes {
+    margin-left: 60px;
+    display: flex;
+    justify-items: flex-start;
+    flex-direction: column;
+    height: 80%;
+}
+
+.descripcion-img1 {
+  position: relative; /* ¡Paso clave! Sirve como referencia para el párrafo */
+  width: 350px; /* Le damos el mismo ancho que la imagen para que el texto lo ocupe */
+  height: auto;
+  margin-left: 60px; /* Mantiene la separación que tenías */
+}
+
+.descripcion-img1 p {
+  position: absolute; /* ¡Paso clave! Permite posicionarlo dentro del padre */
+  bottom: 0; /* Coloca el párrafo en la parte inferior */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+  color: black;
+  padding: 15px; /* Espaciado interno para el texto */
+  margin: 0; /* Elimina márgenes por defecto */
+  text-align: center; /* Centra el texto */
+  font-style: italic; /* Opcional: para que se vea como una cita */
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.descripcion-img1 img {
+  width: 300px;
+}
+
+.contenedor-beneficios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.beneficio {
+  max-width: 220px;
+  flex: 1;
+  text-align: center;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.beneficio .icono {
+  font-size: 30px;
+  color: green; /* Iconos verdes */
+  margin-bottom: 15px;
+}
+
+.beneficio .texto {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.beneficio .texto p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
 /* Services Section (Nuestros Servicios Especializados) */
 .services-section {
     padding: 60px 0;
@@ -324,17 +503,27 @@ ul {
     text-align: center;
     width: 100%;
     display: flex;
+    height: 500px;
 }
 
 .services-section h2 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 20px;
+    color: green; 
+}
+
+.verde {
+  color: black; /* verde suave */
+}
+
+.naranja {
+  color: green /* naranja cálido */
 }
 
 .services-section .subtitle {
     font-size: 1.1em;
     margin-bottom: 40px;
-    color: var(--secondary-color);
+    color: black;
 }
 
 /* style.css */
@@ -521,99 +710,52 @@ ul {
     margin-left: 10px;
 }
 
-/* Testimonial Section (Testimonio de Nuria Sánchez) */
-.testimonial-section {
-    width: 100%;
-    padding: 60px 0;
-    background-color: var(--light-bg); /* Fondo blanco de la sección completa */
-    text-align: center; /* Centra el contenido principal de la sección */
+/* Testimonial Section (Testimonios) */
+.testimonios {
+  background-color: #A6A6A0; /* gris elegante */
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  font-weight: 300;
+  flex-wrap: wrap;
+  text-align: center;
+  height: 230px;
 }
 
-.testimonial-content {
-    position: relative; /* ¡Importante! Para posicionar la imagen absolutamente dentro */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    margin: 0 auto; /* Centra el contenedor en la página */
-    display: flex;
-    justify-content: flex-start; /* Distribuye el espacio entre la imagen y el texto */
-    align-items: center; /* Centra los ítems flex verticalmente */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    background-color: var(--dark-bg-primary); /* Este es el fondo verde oscuro */
-    padding: 20px 0; /* Un padding vertical para el contenido dentro del fondo verde */
-
-    /* Altura MÍNIMA del fondo verde. La imagen la hará crecer si es más alta */
-    min-height: 350px; /* Define la altura base del fondo verde. Ajusta este valor. */
-    
-    /* El overflow hidden debe estar en el contenedor padre de la imagen que queremos recortar,
-       si la imagen está dentro y queremos que su padre la "corte".
-       Pero como queremos que la imagen sobresalga del *fondo* verde, y la imagen
-       es un hermano del texto, el overflow lo gestionaremos en la propia imagen
-       o en un contenedor si la hacemos un pseudo elemento.
-       Para este efecto, la imagen no estará 'overflow: hidden' por su padre `.testimonial-content`. */
-}
-
-.testimonial-spacer{
-    width: 200px;
-}
-
-.testimonial-image {
-    flex-shrink: 0;
-    /* La imagen en sí misma es el elemento que va a sobresalir. */
-    /* La altura de la imagen dictará cuánto sobresale. */
-    /* Quitamos el 'position: absolute' de aquí si queremos que .testimonial-content controle la altura.
-       Si lo dejamos, entonces .testimonial-content no 'contendrá' la altura de la imagen. */
-    
-    /* Si la imagen va a ser el elemento que determine la altura */
-    /* Para que la imagen sobresalga del fondo verde y se centre,
-       no podemos usar 'align-items: center' en .testimonial-content para la imagen,
-       o debemos ajustar su margen. */
-
-    /* Alternativa para sobresalir: usar un margen negativo */
-    margin-top: -80px; /* Mueve la imagen 80px hacia arriba, sobresaliendo */
-    margin-bottom: -80px; /* Mueve la imagen 80px hacia abajo, sobresaliendo */
-    /* Estos márgenes negativos son la clave para que la imagen "salga" del flujo del contenedor flex
-       sin usar 'position: absolute' si queremos que el texto aún la respete.
-       Ajusta el valor (-80px) según cuánto quieres que sobresalga. */
-
-    z-index: 1; /* Asegura que la imagen esté por encima del fondo verde */
-}
-
-.testimonial-image img {
-    max-width: 400px; /* Mantén el ancho máximo */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Elimina espacio extra debajo de la imagen */
-    border-radius: 8px; /* Bordes redondeados de la imagen */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada para el efecto de "levantamiento" */
+.testimonial {
+  flex: 1;
+  max-width: 45%;
+  color: #000;
 }
 
 .testimonial-text {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    text-align: left;
-    font-size: 1.2em;
-    font-style: italic;
-    color: #fff; /* Texto blanco para el fondo oscuro */
-    padding: 20px; /* Añade padding para separar el texto de los bordes del contenedor */
-    z-index: 2; /* Asegura que el texto esté por encima de la imagen si hay superposición */
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  font-style: italic; 
 }
 
-.testimonial-text .author {
-    font-weight: bold;
-    margin-top: 15px;
-    font-style: normal;
+.testimonial-name {
+  font-weight: bold; /* nombre en negrita */
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.testimonial-text .role {
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7); /* Gris claro para el rol */
-    font-style: normal;
+.stars {
+  font-size: 18px;
+  color: #FFD700; /* amarillo dorado */
+  letter-spacing: 2px;
 }
+
 
 /* Contact Section (Conecta con nosotros) */
 .contact-section {
     padding: 60px 0;
     background-color: #fff;
     text-align: center;
+    height: 400px;
 }
 
 .contact-section h2 {
@@ -649,6 +791,60 @@ ul {
 .contact-info p i {
     color: var(--primary-color);
 }
+
+.contacto {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-contacto {
+  background-color: green;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 160px;
+
+}
+
+.boton-contacto:hover {
+  background-color: green;
+}
+
+.opciones-contacto {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 10;
+}
+
+.opciones-contacto a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.opciones-contacto a:hover {
+  background-color: #f0f0f0;
+}
+
+.azul {
+  color: #28a745;
+  font-weight: bold;
+}
+
 
 /* Footer */
 footer {
