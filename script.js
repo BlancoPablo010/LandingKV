@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceDetails = {
         'card1': {
             title: 'Coaching personalizado para Alta Dirección',
-            text: 'Acompañamiento exclusivo para propietarios, CEOS y directivos que buscan una comunicación excelente con el equipo, mejorar su impacto, toma dedecisiones, visión estratégica y equilibrio personal.'
+            text: 'Acompañamiento exclusivo para propietarios, CEOS y directivos que buscan una comunicación excelente con el equipo, mejorar su impacto, toma de decisiones, visión estratégica y equilibrio personal.'
         },
         'card2': {
             title: 'Coaching para Mandos Intermedios',
